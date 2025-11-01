@@ -2,24 +2,27 @@ import 'package:flutter/material.dart';
 
 import '../styles/text_styles.dart';
 import '../widgets/coffee_logo.dart';
-import 'signup_page.dart';
 
 const double _contentMaxWidth = 420;
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
+
+  static const String routeName = '/signup';
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  final TextEditingController _emailController = TextEditingController(text: 'info@example.com');
+class _SignUpPageState extends State<SignUpPage> {
+  final TextEditingController _usernameController = TextEditingController(text: 'Roberto Karlos');
+  final TextEditingController _emailController = TextEditingController(text: 'example@gmail.com');
   final TextEditingController _passwordController = TextEditingController();
   bool _obscure = true;
 
   @override
   void dispose() {
+    _usernameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
@@ -39,7 +42,6 @@ class _LoginPageState extends State<LoginPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 12),
-                  // Logo + Brand
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -57,18 +59,16 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                   ),
                   const SizedBox(height: 48),
-                  // Sign In Title
                   const Text(
-                    'Sign In',
+                    'Create an account',
                     style: TextStyle(
-                      fontSize: 36,
+                      fontSize: 32,
                       fontWeight: FontWeight.w700,
                       color: Colors.black87,
                       height: 1.2,
                     ),
                   ),
                   const SizedBox(height: 12),
-                  // Description text
                   const Text(
                     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
                     style: TextStyle(
@@ -78,9 +78,42 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   const SizedBox(height: 32),
-                  // Username Field
                   const Text(
                     'Username',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: subtitleColor,
+                      letterSpacing: 0.2,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  TextField(
+                    controller: _usernameController,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      color: Colors.black87,
+                    ),
+                    cursorColor: primaryGreen,
+                    decoration: const InputDecoration(
+                      isDense: true,
+                      hintText: 'Roberto Karlos',
+                      hintStyle: TextStyle(color: Colors.grey),
+                      contentPadding: EdgeInsets.only(bottom: 12),
+                      border: UnderlineInputBorder(
+                        borderSide: BorderSide(color: lightGray, width: 1),
+                      ),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: lightGray, width: 1),
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: primaryGreen, width: 1.4),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 28),
+                  const Text(
+                    'Email',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
@@ -99,7 +132,7 @@ class _LoginPageState extends State<LoginPage> {
                     cursorColor: primaryGreen,
                     decoration: const InputDecoration(
                       isDense: true,
-                      hintText: 'info@example.com',
+                      hintText: 'example@gmail.com',
                       hintStyle: TextStyle(color: Colors.grey),
                       contentPadding: EdgeInsets.only(bottom: 12),
                       border: UnderlineInputBorder(
@@ -114,7 +147,6 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   const SizedBox(height: 28),
-                  // Password Field
                   const Text(
                     'Password',
                     style: TextStyle(
@@ -160,84 +192,13 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   const SizedBox(height: 40),
-                  // LOGIN Button
-                  SizedBox(
-                    width: double.infinity,
-                    height: 58,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: primaryGreen,
-                        foregroundColor: Colors.white,
-                        elevation: 0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(32),
-                        ),
-                      ),
-                      onPressed: () {},
-                      child: const Text(
-                        'LOGIN',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 18,
-                          letterSpacing: 0.6,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 18),
-                  // Forgot Password Row
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        'Forgot Password?',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: subtitleColor,
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      TextButton(
-                        onPressed: () {},
-                        style: TextButton.styleFrom(
-                          foregroundColor: primaryGreen,
-                          padding: EdgeInsets.zero,
-                          minimumSize: Size.zero,
-                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                        ),
-                        child: const Text(
-                          'Reset Password',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            decoration: TextDecoration.underline,
-                            decorationColor: primaryGreen,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 36),
-                  // Don't have account text
-                  const Center(
-                    child: Text(
-                      "Dont have any account?",
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: subtitleColor,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  // CREATE AN ACCOUNT Button
                   SizedBox(
                     width: double.infinity,
                     height: 66,
                     child: ElevatedButton(
-                      onPressed: () => Navigator.of(context).pushNamed(SignUpPage.routeName),
+                      onPressed: () {},
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: beige,
+                        backgroundColor: const Color(0xFFE5E5E5),
                         foregroundColor: Colors.black87,
                         elevation: 0,
                         shape: RoundedRectangleBorder(
@@ -245,12 +206,47 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       child: const Text(
-                        'CREATE AN ACCOUNT',
+                        'SIGN UP',
                         style: TextStyle(
                           fontWeight: FontWeight.w700,
                           fontSize: 18,
                           letterSpacing: 0.6,
                         ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                  Center(
+                    child: RichText(
+                      textAlign: TextAlign.center,
+                      text: TextSpan(
+                        style: const TextStyle(
+                          fontSize: 16,
+                          color: subtitleColor,
+                          height: 1.5,
+                        ),
+                        children: [
+                          const TextSpan(text: 'By tapping Sign up you accept all our '),
+                          TextSpan(
+                            text: 'terms',
+                            style: const TextStyle(
+                              color: primaryGreen,
+                              fontWeight: FontWeight.w600,
+                              decoration: TextDecoration.underline,
+                              decorationColor: primaryGreen,
+                            ),
+                          ),
+                          const TextSpan(text: ' and '),
+                          TextSpan(
+                            text: 'condition',
+                            style: const TextStyle(
+                              color: primaryGreen,
+                              fontWeight: FontWeight.w600,
+                              decoration: TextDecoration.underline,
+                              decorationColor: primaryGreen,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -264,3 +260,4 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
+
