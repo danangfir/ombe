@@ -16,6 +16,7 @@ import 'ui/chat_page.dart';
 import 'ui/elements_page.dart';
 import 'ui/settings_page.dart';
 import 'ui/product_page.dart';
+import 'ui/cart_page.dart';
 import 'styles/text_styles.dart';
 
 void main() {
@@ -90,6 +91,7 @@ class MyApp extends StatelessWidget {
         ElementsPage.routeName: (context) => const ElementsPage(),
         SettingsPage.routeName: (context) => const SettingsPage(),
         ProductPage.routeName: (context) => const ProductPage(),
+        CartPage.routeName: (context) => const CartPage(),
       },
       initialRoute: OnboardingPage.routeName,
     );

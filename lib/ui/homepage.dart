@@ -69,7 +69,7 @@ class HomePage extends StatelessWidget {
                                   size: 24,
                                 ),
                                 onPressed: () {
-                                  // Add shopping cart action
+                                  Navigator.of(context).pushNamed('/cart');
                                 },
                               ),
                               Positioned(
@@ -397,23 +397,28 @@ class _CategoryCard extends StatelessWidget {
   final IconData icon;
   final String title;
   final String menuCount;
+  final VoidCallback? onTap;
 
   const _CategoryCard({
     required this.icon,
     required this.title,
     required this.menuCount,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: lightGray, width: 1),
-      ),
-      child: Column(
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(16),
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: lightGray, width: 1),
+        ),
+        child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
@@ -445,8 +450,10 @@ class _CategoryCard extends StatelessWidget {
             ),
           ),
         ],
+        ),
       ),
     );
   }
 }
+
 
