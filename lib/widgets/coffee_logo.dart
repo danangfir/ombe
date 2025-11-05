@@ -13,43 +13,59 @@ class CoffeeLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    // Menggunakan icon PNG dari assets
+    return Image.asset(
+      'assets/icons/icons8-coffee-50.png',
       width: size,
       height: size,
-      child: CustomPaint(
-        size: Size.square(size),
-        painter: CoffeeCupPainter(),
-      ),
+      fit: BoxFit.contain,
+      errorBuilder: (context, error, stackTrace) {
+        // Fallback ke custom paint jika image tidak ditemukan
+        return SizedBox(
+          width: size,
+          height: size,
+          child: CustomPaint(
+            size: Size.square(size),
+            painter: CoffeeCupPainter(strokeWidth: size * 0.046),
+          ),
+        );
+      },
     );
   }
 }
 
 class CoffeeCupPainter extends CustomPainter {
+  const CoffeeCupPainter({
+    this.strokeWidth = 2.6,
+  });
+
+  final double strokeWidth;
+
   @override
   void paint(Canvas canvas, Size size) {
     final Paint cupPaint = Paint()
       ..color = primaryGreen
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 2.6
+      ..strokeWidth = strokeWidth
       ..strokeCap = StrokeCap.round
       ..strokeJoin = StrokeJoin.round;
 
     final Paint steamPaint = Paint()
       ..color = primaryGreen
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 2.4
+      ..strokeWidth = strokeWidth * 0.92
       ..strokeCap = StrokeCap.round;
 
     final Paint saucerPaint = Paint()
       ..color = beige
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 6
+      ..strokeWidth = strokeWidth * 2.3
       ..strokeCap = StrokeCap.round;
 
     final Paint handlePaint = Paint()
       ..color = primaryGreen
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 2.6
+      ..strokeWidth = strokeWidth
       ..strokeCap = StrokeCap.round
       ..strokeJoin = StrokeJoin.round;
 
@@ -105,4 +121,3 @@ class CoffeeCupPainter extends CustomPainter {
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
-

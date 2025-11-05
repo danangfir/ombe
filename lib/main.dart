@@ -1,6 +1,21 @@
 import 'package:flutter/material.dart';
 import 'ui/login_page.dart';
+import 'ui/onboarding_page.dart';
 import 'ui/signup_page.dart';
+import 'ui/welcome_page.dart';
+import 'ui/homepage.dart';
+import 'ui/notifications_page.dart';
+import 'ui/store_map_page.dart';
+import 'ui/delivery_tracking_page.dart';
+import 'ui/store_locations_page.dart';
+import 'ui/rewards_page.dart';
+import 'ui/profile_page.dart';
+import 'ui/order_review_page.dart';
+import 'ui/messages_page.dart';
+import 'ui/chat_page.dart';
+import 'ui/elements_page.dart';
+import 'ui/settings_page.dart';
+import 'ui/product_page.dart';
 import 'styles/text_styles.dart';
 
 void main() {
@@ -58,9 +73,25 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       routes: {
+        OnboardingPage.routeName: (context) => const OnboardingPage(),
+        WelcomePage.routeName: (context) => const WelcomePage(),
+        LoginPage.routeName: (context) => const LoginPage(),
         SignUpPage.routeName: (context) => const SignUpPage(),
+        HomePage.routeName: (context) => const HomePage(),
+        NotificationsPage.routeName: (context) => const NotificationsPage(),
+        StoreMapPage.routeName: (context) => const StoreMapPage(),
+        DeliveryTrackingPage.routeName: (context) => const DeliveryTrackingPage(),
+        StoreLocationsPage.routeName: (context) => const StoreLocationsPage(),
+        RewardsPage.routeName: (context) => const RewardsPage(),
+        ProfilePage.routeName: (context) => const ProfilePage(),
+        OrderReviewPage.routeName: (context) => const OrderReviewPage(),
+        MessagesPage.routeName: (context) => const MessagesPage(),
+        ChatPage.routeName: (context) => const ChatPage(),
+        ElementsPage.routeName: (context) => const ElementsPage(),
+        SettingsPage.routeName: (context) => const SettingsPage(),
+        ProductPage.routeName: (context) => const ProductPage(),
       },
-      home: const LoginPage(),
+      initialRoute: OnboardingPage.routeName,
     );
   }
 }

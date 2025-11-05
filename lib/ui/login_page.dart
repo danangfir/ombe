@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 import '../styles/text_styles.dart';
 import '../widgets/coffee_logo.dart';
 import 'signup_page.dart';
+import 'homepage.dart';
 
 const double _contentMaxWidth = 420;
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
+
+  static const String routeName = '/login';
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -173,7 +176,22 @@ class _LoginPageState extends State<LoginPage> {
                           borderRadius: BorderRadius.circular(32),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        // Accept any email and password to navigate to homepage
+                        final email = _emailController.text.trim();
+                        final password = _passwordController.text.trim();
+                        
+                        if (email.isNotEmpty && password.isNotEmpty) {
+                          Navigator.of(context).pushReplacementNamed(HomePage.routeName);
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Please enter email and password'),
+                              backgroundColor: Colors.red,
+                            ),
+                          );
+                        }
+                      },
                       child: const Text(
                         'LOGIN',
                         style: TextStyle(
